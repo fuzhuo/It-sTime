@@ -7,9 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "FeedsData.h"
 
-@interface FirstViewController : UIViewController
+#import "DetailContentViewController.h"
+@interface FirstViewController : UITableViewController <UITableViewDelegate, FeedsUpdate> {
+    UIRefreshControl *refresh;
+}
 
+@property NSInteger selectedRow;
+@property NSInteger selectedSection;
+@property (strong, nonatomic) UIRefreshControl *refresh;
 
+-(NSString*)htmlToPlainText:(NSString*)html;
+-(void)refreshAction:(UIRefreshControl*)refresh;
+-(NSString*)pubTimeToNow:(NSDate*) date;
 @end
 
