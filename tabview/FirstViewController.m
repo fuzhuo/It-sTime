@@ -44,19 +44,18 @@
 }
 
 -(void)refreshAction:(UIRefreshControl*)refresh {
-    NSLog(@"refresh");
+    //NSLog(@"refresh");
     [[FeedsData getInstance] loadFeeds];
 }
 
 #pragma mark - Segues
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    NSLog(@"prepareForSegue, %@", [segue identifier]);
+    //NSLog(@"prepareForSegue, %@", [segue identifier]);
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         DetailContentViewController *controller = (DetailContentViewController*)segue.destinationViewController;
         controller.row = self.selectedRow;
         controller.section = self.selectedSection;
-        controller.label = [[NSString alloc] initWithFormat:@"item-%ld", (long)self.selectedRow];
         //controller.navigationItem.leftBarButtonItem = self.splitViewController.displayModeButtonItem;
         //controller.navigationItem.leftItemsSupplementBackButton = YES;
         //[controller.tabBarController setHidesBottomBarWhenPushed:YES];
@@ -95,7 +94,7 @@
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"click[%ld]", (long)indexPath.row);
+    //NSLog(@"click[%ld]", (long)indexPath.row);
     self.selectedRow = indexPath.row;
     self.selectedSection = indexPath.section;
     [self setHidesBottomBarWhenPushed:YES];
@@ -135,24 +134,31 @@
     NSTimeInterval now=[dat timeIntervalSince1970]*1;
     NSString *timeString=@"";
     
-    NSTimeInterval cha=now-late;
+    NSTimeInterval chas=now-late;
+    int cha = (int)chas;
     
-    if (cha/3600<1) {
-        timeString = [NSString stringWithFormat:@"%f", cha/60];
-        timeString = [timeString substringToIndex:timeString.length-7];
-        timeString=[NSString stringWithFormat:@"%@ mins ago", timeString];
-        
-    }
-    if (cha/3600>1&&cha/86400<1) {
-        timeString = [NSString stringWithFormat:@"%f", cha/3600];
-        timeString = [timeString substringToIndex:timeString.length-7];
-        timeString=[NSString stringWithFormat:@"%@ hours ago", timeString];
-    }
-    if (cha/86400>1)
-    {
-        timeString = [NSString stringWithFormat:@"%f", cha/86400];
-        timeString = [timeString substringToIndex:timeString.length-7];
-        timeString=[NSString stringWithFormat:@"%@ days ago", timeString];
+    if (cha/3600 < 1) {
+        timeString = [NSString stringWithFormat:@"%d", cha/60];
+        timeString=[NSString stringWithFormat:@"%@ min%@ ago", timeString, (cha/60 > 1)?@"s":@""];
+    } else if (cha/3600>1&&cha/86400<1) {
+        timeString = [NSString stringWithFormat:@"%d", cha/3600];
+        timeString=[NSString stringWithFormat:@"%@ hour%@ ago", timeString, (cha/3600 > 1)?@"s":@""];
+    } else {
+        cha/=86400;
+        if (cha>=1 && cha<7)
+        {
+            timeString = [NSString stringWithFormat:@"%d", cha];
+            timeString=[NSString stringWithFormat:@"%@ day%@ ago", timeString, (cha>1)?@"s":@""];
+        } else if (cha<30) {
+            timeString = [NSString stringWithFormat:@"%d", cha/7];
+            timeString=[NSString stringWithFormat:@"%@ week%@ ago", timeString, (cha/7>1)?@"s":@""];
+        } else if (cha<365) {                                                
+            timeString = [NSString stringWithFormat:@"%d", cha/30];
+            timeString=[NSString stringWithFormat:@"%@ month%@ ago", timeString, (cha/30>1)?@"s":@""];
+        } else {                                                             
+            timeString = [NSString stringWithFormat:@"%d", cha/365];
+            timeString=[NSString stringWithFormat:@"%@ year%@ ago", timeString, (cha/365>1)?@"s":@""];
+        }                                                                    
     }
     return timeString;
 }

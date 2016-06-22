@@ -17,6 +17,10 @@
 		E97371E41D169E5300996E12 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E97371E31D169E5300996E12 /* TableViewCell.m */; };
 		E97371E61D16C53800996E12 /* favicon_color.png in Resources */ = {isa = PBXBuildFile; fileRef = E97371E51D16C53800996E12 /* favicon_color.png */; };
 		E97371F21D17BAD600996E12 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97371F11D17BAD600996E12 /* SettingsTableViewController.m */; };
+		E97371F81D1A902600996E12 /* UIApplication+RemoteControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E97371F71D1A902600996E12 /* UIApplication+RemoteControl.m */; };
+		E97372021D1AA35400996E12 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = E97371FF1D1AA35400996E12 /* play.png */; };
+		E97372031D1AA35400996E12 /* paused.png in Resources */ = {isa = PBXBuildFile; fileRef = E97372001D1AA35400996E12 /* paused.png */; };
+		E97372041D1AA35400996E12 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = E97372011D1AA35400996E12 /* stop.png */; };
 		E9B05A941D155B5400C529E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B05A931D155B5400C529E5 /* main.m */; };
 		E9B05A971D155B5400C529E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B05A961D155B5400C529E5 /* AppDelegate.m */; };
 		E9B05A9A1D155B5400C529E5 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B05A991D155B5400C529E5 /* FirstViewController.m */; };
@@ -49,6 +53,12 @@
 		E97371E51D16C53800996E12 /* favicon_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favicon_color.png; sourceTree = "<group>"; };
 		E97371F01D17BAD600996E12 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		E97371F11D17BAD600996E12 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
+		E97371F31D1A8A5D00996E12 /* tabview.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = tabview.entitlements; sourceTree = "<group>"; };
+		E97371F61D1A902600996E12 /* UIApplication+RemoteControl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIApplication+RemoteControl.h"; sourceTree = "<group>"; };
+		E97371F71D1A902600996E12 /* UIApplication+RemoteControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIApplication+RemoteControl.m"; sourceTree = "<group>"; };
+		E97371FF1D1AA35400996E12 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
+		E97372001D1AA35400996E12 /* paused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paused.png; sourceTree = "<group>"; };
+		E97372011D1AA35400996E12 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
 		E9B05A8F1D155B5400C529E5 /* tabview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tabview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9B05A931D155B5400C529E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E9B05A951D155B5400C529E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -98,10 +108,21 @@
 			name = AFNetwork;
 			sourceTree = "<group>";
 		};
+		E97372051D1AB4DA00996E12 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E97371FF1D1AA35400996E12 /* play.png */,
+				E97372001D1AA35400996E12 /* paused.png */,
+				E97372011D1AA35400996E12 /* stop.png */,
+				E97371E51D16C53800996E12 /* favicon_color.png */,
+			);
+			name = Resources;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		E9B05A861D155B5400C529E5 = {
 			isa = PBXGroup;
 			children = (
-				E97371E51D16C53800996E12 /* favicon_color.png */,
 				E9B05A911D155B5400C529E5 /* tabview */,
 				E9B05A901D155B5400C529E5 /* Products */,
 			);
@@ -118,6 +139,8 @@
 		E9B05A911D155B5400C529E5 /* tabview */ = {
 			isa = PBXGroup;
 			children = (
+				E97372051D1AB4DA00996E12 /* Resources */,
+				E97371F31D1A8A5D00996E12 /* tabview.entitlements */,
 				E973717F1D160D7C00996E12 /* AFNetwork */,
 				E9B05AB61D159D7B00C529E5 /* UI */,
 				E9B05AB51D159D6B00C529E5 /* Feeds */,
@@ -164,6 +187,8 @@
 				E97371E31D169E5300996E12 /* TableViewCell.m */,
 				E97371F01D17BAD600996E12 /* SettingsTableViewController.h */,
 				E97371F11D17BAD600996E12 /* SettingsTableViewController.m */,
+				E97371F61D1A902600996E12 /* UIApplication+RemoteControl.h */,
+				E97371F71D1A902600996E12 /* UIApplication+RemoteControl.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -199,6 +224,15 @@
 				TargetAttributes = {
 					E9B05A8E1D155B5400C529E5 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = SGZE33W2XX;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.InterAppAudio = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -226,7 +260,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E97371E61D16C53800996E12 /* favicon_color.png in Resources */,
+				E97372021D1AA35400996E12 /* play.png in Resources */,
 				E9B05AA51D155B5400C529E5 /* LaunchScreen.storyboard in Resources */,
+				E97372041D1AA35400996E12 /* stop.png in Resources */,
+				E97372031D1AA35400996E12 /* paused.png in Resources */,
 				E9B05AA21D155B5400C529E5 /* Assets.xcassets in Resources */,
 				E9B05AA01D155B5400C529E5 /* Main.storyboard in Resources */,
 			);
@@ -241,6 +278,7 @@
 			files = (
 				E973718E1D160DB300996E12 /* AFNetworkReachabilityManager.m in Sources */,
 				E9B05AB31D159D1300C529E5 /* RssParser.cpp in Sources */,
+				E97371F81D1A902600996E12 /* UIApplication+RemoteControl.m in Sources */,
 				E9B05AAE1D159C6400C529E5 /* FeedsData.mm in Sources */,
 				E9B05A971D155B5400C529E5 /* AppDelegate.m in Sources */,
 				E9B05A9A1D155B5400C529E5 /* FirstViewController.m in Sources */,

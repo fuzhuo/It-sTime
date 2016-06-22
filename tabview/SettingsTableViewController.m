@@ -26,17 +26,19 @@
     NSLog(@"load settings");
     FeedsData *feedsData = [FeedsData getInstance];
     [self.switchChinese setOn: feedsData.showChinese];
-    [self.switchHinti setOn: feedsData.showHinti];
+    [self.switchHindi setOn: feedsData.showHindi];
     [self.switchEnglish setOn: feedsData.showDefault];
     [self.switchDarkMode setOn: feedsData.darkMode];
     [self.switchAutoPlayAudio setOn: feedsData.autoPlayAudio];
+    [self.sliderFontSize setValue:feedsData.fontSize];
+    self.fontSizeLabel.text = [NSString stringWithFormat:@"%d", (int)feedsData.fontSize];
     Boolean englishOn = [self.switchEnglish isOn];
-    Boolean hintiOn = [self.switchHinti isOn];
+    Boolean hindiOn = [self.switchHindi isOn];
     Boolean chineseOn = [self.switchChinese isOn];
-    int total = englishOn + hintiOn + chineseOn;
+    int total = englishOn + hindiOn + chineseOn;
     if (total==1) {
         if (englishOn) [self.switchEnglish setEnabled:NO];
-        else if (hintiOn) [self.switchHinti setEnabled:NO];
+        else if (hindiOn) [self.switchHindi setEnabled:NO];
         else if (chineseOn) [self.switchChinese setEnabled:NO];
     }
 }
@@ -47,24 +49,23 @@
 }
 
 - (IBAction)valueChanged:(id)sender {
-    NSLog(@"Value did changed");
-    if (sender == self.switchHinti || sender == self.switchEnglish || sender == self.switchChinese) {
+    if (sender == self.switchHindi || sender == self.switchEnglish || sender == self.switchChinese) {
         Boolean englishOn = [self.switchEnglish isOn];
-        Boolean hintiOn = [self.switchHinti isOn];
+        Boolean hindiOn = [self.switchHindi isOn];
         Boolean chineseOn = [self.switchChinese isOn];
-        int total = englishOn + hintiOn + chineseOn;
+        int total = englishOn + hindiOn + chineseOn;
         if (total==1) {
             if (englishOn) [self.switchEnglish setEnabled:NO];
-            else if (hintiOn) [self.switchHinti setEnabled:NO];
+            else if (hindiOn) [self.switchHindi setEnabled:NO];
             else if (chineseOn) [self.switchChinese setEnabled:NO];
         } else {
             [self.switchEnglish setEnabled:YES];
-            [self.switchHinti setEnabled:YES];
+            [self.switchHindi setEnabled:YES];
             [self.switchChinese setEnabled:YES];
         }
         [FeedsData getInstance].showChinese = chineseOn;
         [FeedsData getInstance].showDefault = englishOn;
-        [FeedsData getInstance].showHinti = hintiOn;
+        [FeedsData getInstance].showHindi = hindiOn;
         [[FeedsData getInstance] changeStatus];
     }
     [FeedsData getInstance].autoPlayAudio = [self.switchAutoPlayAudio isOn];
@@ -74,6 +75,8 @@
 - (IBAction)fontValueChanged:(id)sender {
     NSInteger value = [self.sliderFontSize value];
     self.fontSizeLabel.text = [NSString stringWithFormat:@"%ld", value];
+    [FeedsData getInstance].fontSize = value;
+    [[FeedsData getInstance] changeSettings];
 }
 
 /*

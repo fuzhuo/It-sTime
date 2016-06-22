@@ -21,6 +21,7 @@
 @synthesize pubDate;
 @synthesize description;
 @synthesize content;
+@synthesize musicURL;
 
 @end
 
@@ -39,7 +40,7 @@
 @synthesize delegate;
 @synthesize rssDatas;
 @synthesize showDefault;
-@synthesize showHinti;
+@synthesize showHindi;
 @synthesize showChinese;
 @synthesize autoPlayAudio;
 @synthesize darkMode;
@@ -85,7 +86,7 @@ static FeedsData *_sharedFeedsData;
 
 - (void)loadFeeds {
     if (self.showDefault) [self fetchFeedsFromURL:DEFAULT toIndex:0];
-    if (self.showHinti) [self fetchFeedsFromURL:HINDI toIndex:1];
+    if (self.showHindi) [self fetchFeedsFromURL:HINDI toIndex:1];
     if (self.showChinese) [self fetchFeedsFromURL:CHINESE toIndex:2];
 }
 
@@ -121,9 +122,9 @@ static FeedsData *_sharedFeedsData;
             item_.pubDate = [NSString stringWithUTF8String:item.pubDate.c_str()];
             item_.description = [NSString stringWithUTF8String:item.description.c_str()];
             item_.content = [NSString stringWithUTF8String:item.content.c_str()];
-            [mRssData.items addObject:item_];
             [mRssData.images addObject:[UIImage imageNamed:@"favicon_color.png" ]];
             
+            //for img
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<img class=.*src=\"(.*)\" alt=.*/>" options:NSRegularExpressionCaseInsensitive error:nil];
             NSArray *matches = [regex matchesInString:item_.content options:0 range:NSMakeRange(0, item_.content.length)];
             NSString *img_url = nil;
@@ -132,6 +133,17 @@ static FeedsData *_sharedFeedsData;
                 //NSLog(@"img: url=%@", img_url);
             }
             [self fetchImageFromURL:img_url section:index row:i];
+            
+            //for music
+            NSRegularExpression *music_regex = [NSRegularExpression regularExpressionWithPattern:@"<audio.*src=\"([^<> \"]*)\" /><a.*</audio>" options:NSRegularExpressionCaseInsensitive error:nil];
+            NSArray *music_matches = [music_regex matchesInString:item_.content options:0 range:NSMakeRange(0, item_.content.length)];
+            NSString *music_url = nil;
+            if ([music_matches count]!=0) {
+                music_url = [item_.content substringWithRange:[music_matches[0] rangeAtIndex:1]];
+                //NSLog(@"music_url %@", music_url);
+            }
+            item_.musicURL = music_url;
+            [mRssData.items addObject:item_];
         }
         delete parser;
         if (delegate!=nil) {
@@ -167,22 +179,22 @@ static FeedsData *_sharedFeedsData;
     NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
     NSString *filePath = [docPath stringByAppendingPathComponent:@"settings.plst"];
     NSMutableDictionary *dict = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
-    NSLog(@"read diction: %@", dict);
+    //NSLog(@"read diction: %@", dict);
     //default settings
     if (dict == nil) {
         self.showChinese= YES;
-        self.showHinti = YES;
+        self.showHindi = YES;
         self.showDefault = YES;
-        self.fontSize = 14.0f;
+        self.fontSize = 14;
         self.darkMode = NO;
         self.autoPlayAudio = YES;
     } else {
         self.showChinese = [[dict valueForKey:@"showChinese"] boolValue];
-        self.showHinti = [[dict valueForKey:@"showHinti"] boolValue];
+        self.showHindi = [[dict valueForKey:@"showHindi"] boolValue];
         self.showDefault = [[dict valueForKey:@"showDefault"] boolValue];
         self.darkMode = [[dict valueForKey:@"darkMode"] boolValue];
         self.autoPlayAudio = [[dict valueForKey:@"autoPlayAudio"] boolValue];
-        self.fontSize = [[dict valueForKey:@"fontSize"] doubleValue];
+        self.fontSize = [[dict valueForKey:@"fontSize"] floatValue];
     }
 }
 
@@ -191,12 +203,12 @@ static FeedsData *_sharedFeedsData;
     NSString *filePath = [docPath stringByAppendingPathComponent:@"settings.plst"];
     NSMutableDictionary *dict = [[NSMutableDictionary alloc] init];
     [dict setObject:(self.showDefault)?@"YES":@"NO" forKey:@"showDefault"];
-    [dict setObject:(self.showHinti)?@"YES":@"NO" forKey:@"showHinti"];
+    [dict setObject:(self.showHindi)?@"YES":@"NO" forKey:@"showHindi"];
     [dict setObject:(self.showChinese)?@"YES":@"NO" forKey:@"showChinese"];
     [dict setObject:(self.autoPlayAudio)?@"YES":@"NO" forKey:@"autoPlayAudio"];
     [dict setObject:(self.darkMode)?@"YES":@"NO" forKey:@"darkMode"];
     [dict setObject:[NSString stringWithFormat:@"%f", self.fontSize] forKey:@"fontSize"];
     [dict writeToFile:filePath atomically:YES];
-    NSLog(@"save settings %@", dict);
+    //NSLog(@"save settings %@", dict);
 }
 @end

@@ -21,12 +21,14 @@
     NSString *pubDate;
     NSString *description;
     NSString *content;
+    NSString *musicURL;
 }
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *link;
 @property (nonatomic, retain) NSString *pubDate;
 @property (nonatomic, retain) NSString *description;
 @property (nonatomic, retain) NSString *content;
+@property (nonatomic, retain) NSString *musicURL;
 @end
 
 @interface RssData_ : NSObject {
@@ -63,7 +65,7 @@
 @property (nonatomic, retain) id<FeedsUpdate> delegate;
 @property (nonatomic, retain) NSMutableArray<RssData_*> *rssDatas;
 @property (nonatomic, assign) BOOL showDefault;
-@property (nonatomic, assign) BOOL showHinti;
+@property (nonatomic, assign) BOOL showHindi;
 @property (nonatomic, assign) BOOL showChinese;
 @property (nonatomic, assign) BOOL darkMode;
 @property (nonatomic, assign) BOOL autoPlayAudio;

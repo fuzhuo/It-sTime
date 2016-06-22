@@ -10,7 +10,7 @@
 
 typedef NS_ENUM(NSInteger, SettingsSwitch) {
     SettingsSwitchEnglish,
-    SettingsSwitchHinti,
+    SettingsSwitchHindi,
     SettingsSwitchChinese
 };
 
@@ -19,7 +19,7 @@ typedef NS_ENUM(NSInteger, SettingsSwitch) {
 }
 
 @property (nonatomic, weak) IBOutlet UISwitch *switchEnglish;
-@property (nonatomic, weak) IBOutlet UISwitch *switchHinti;
+@property (nonatomic, weak) IBOutlet UISwitch *switchHindi;
 @property (nonatomic, weak) IBOutlet UISwitch *switchChinese;
 @property (nonatomic, weak) IBOutlet UISwitch *switchAutoPlayAudio;
 @property (nonatomic, weak) IBOutlet UISwitch *switchDarkMode;
