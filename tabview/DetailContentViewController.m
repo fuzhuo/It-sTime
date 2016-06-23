@@ -145,11 +145,11 @@
     if ([notification.name isEqualToString:kRemoteControlPlayTapped]) {
         isPlaying=YES;
         [self.player play];
-        [self.playButton setTitle:@"Pause" forState:UIControlStateNormal];
+        [self.playButton setImage:[UIImage imageNamed:@"paused.png"] forState:UIControlStateNormal];
     } else if ([notification.name isEqualToString:kRemoteControlPauseTapped]) {
         isPlaying=NO;
         [self.player pause];
-        [self.playButton setTitle:@"Play" forState:UIControlStateNormal];
+        [self.playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
     }
 }
 
@@ -158,7 +158,7 @@
     isPlaying=!isPlaying;
     [player pause];
     [player seekToTime:CMTimeMakeWithSeconds(0, NSEC_PER_SEC)];
-    [self.playButton setTitle:@"Play" forState:UIControlStateNormal];
+    [self.playButton setImage:[UIImage imageNamed:@"play.png"] forState:UIControlStateNormal];
     NSLog(@"Stopping");
 }
 

@@ -15,12 +15,12 @@
 		E97371921D160DB300996E12 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E973718C1D160DB300996E12 /* AFURLSessionManager.m */; };
 		E97371951D162D5300996E12 /* DetailContentViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97371941D162D5300996E12 /* DetailContentViewController.m */; };
 		E97371E41D169E5300996E12 /* TableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E97371E31D169E5300996E12 /* TableViewCell.m */; };
-		E97371E61D16C53800996E12 /* favicon_color.png in Resources */ = {isa = PBXBuildFile; fileRef = E97371E51D16C53800996E12 /* favicon_color.png */; };
 		E97371F21D17BAD600996E12 /* SettingsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E97371F11D17BAD600996E12 /* SettingsTableViewController.m */; };
 		E97371F81D1A902600996E12 /* UIApplication+RemoteControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E97371F71D1A902600996E12 /* UIApplication+RemoteControl.m */; };
 		E97372021D1AA35400996E12 /* play.png in Resources */ = {isa = PBXBuildFile; fileRef = E97371FF1D1AA35400996E12 /* play.png */; };
 		E97372031D1AA35400996E12 /* paused.png in Resources */ = {isa = PBXBuildFile; fileRef = E97372001D1AA35400996E12 /* paused.png */; };
 		E97372041D1AA35400996E12 /* stop.png in Resources */ = {isa = PBXBuildFile; fileRef = E97372011D1AA35400996E12 /* stop.png */; };
+		E973720B1D1B7A0200996E12 /* NSString+MD5.m in Sources */ = {isa = PBXBuildFile; fileRef = E973720A1D1B7A0200996E12 /* NSString+MD5.m */; };
 		E9B05A941D155B5400C529E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B05A931D155B5400C529E5 /* main.m */; };
 		E9B05A971D155B5400C529E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B05A961D155B5400C529E5 /* AppDelegate.m */; };
 		E9B05A9A1D155B5400C529E5 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E9B05A991D155B5400C529E5 /* FirstViewController.m */; };
@@ -30,6 +30,9 @@
 		E9B05AAE1D159C6400C529E5 /* FeedsData.mm in Sources */ = {isa = PBXBuildFile; fileRef = E9B05AAD1D159C6400C529E5 /* FeedsData.mm */; };
 		E9B05AB31D159D1300C529E5 /* RssParser.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9B05AAF1D159D1300C529E5 /* RssParser.cpp */; };
 		E9B05AB41D159D1300C529E5 /* tinyxml2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E9B05AB11D159D1300C529E5 /* tinyxml2.cpp */; };
+		E9DEB2B81D1BC2DE00A56F9D /* status_podcast.png in Resources */ = {isa = PBXBuildFile; fileRef = E9DEB2B71D1BC2DE00A56F9D /* status_podcast.png */; };
+		E9DEB2BA1D1BC73B00A56F9D /* pic_placeholder.png in Resources */ = {isa = PBXBuildFile; fileRef = E9DEB2B91D1BC73B00A56F9D /* pic_placeholder.png */; };
+		E9FA5B731D1B9972004E4A1D /* podcast_cyan.png in Resources */ = {isa = PBXBuildFile; fileRef = E9FA5B721D1B9972004E4A1D /* podcast_cyan.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,7 +53,6 @@
 		E97371941D162D5300996E12 /* DetailContentViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailContentViewController.m; sourceTree = "<group>"; };
 		E97371E21D169E5300996E12 /* TableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableViewCell.h; sourceTree = "<group>"; };
 		E97371E31D169E5300996E12 /* TableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableViewCell.m; sourceTree = "<group>"; };
-		E97371E51D16C53800996E12 /* favicon_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = favicon_color.png; sourceTree = "<group>"; };
 		E97371F01D17BAD600996E12 /* SettingsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsTableViewController.h; sourceTree = "<group>"; };
 		E97371F11D17BAD600996E12 /* SettingsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsTableViewController.m; sourceTree = "<group>"; };
 		E97371F31D1A8A5D00996E12 /* tabview.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = tabview.entitlements; sourceTree = "<group>"; };
@@ -59,6 +61,8 @@
 		E97371FF1D1AA35400996E12 /* play.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play.png; sourceTree = "<group>"; };
 		E97372001D1AA35400996E12 /* paused.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = paused.png; sourceTree = "<group>"; };
 		E97372011D1AA35400996E12 /* stop.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop.png; sourceTree = "<group>"; };
+		E97372091D1B7A0200996E12 /* NSString+MD5.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+MD5.h"; sourceTree = "<group>"; };
+		E973720A1D1B7A0200996E12 /* NSString+MD5.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+MD5.m"; sourceTree = "<group>"; };
 		E9B05A8F1D155B5400C529E5 /* tabview.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tabview.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9B05A931D155B5400C529E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E9B05A951D155B5400C529E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -75,6 +79,9 @@
 		E9B05AB01D159D1300C529E5 /* RssParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RssParser.h; sourceTree = "<group>"; };
 		E9B05AB11D159D1300C529E5 /* tinyxml2.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = tinyxml2.cpp; sourceTree = "<group>"; };
 		E9B05AB21D159D1300C529E5 /* tinyxml2.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = tinyxml2.h; sourceTree = "<group>"; };
+		E9DEB2B71D1BC2DE00A56F9D /* status_podcast.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = status_podcast.png; sourceTree = "<group>"; };
+		E9DEB2B91D1BC73B00A56F9D /* pic_placeholder.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pic_placeholder.png; sourceTree = "<group>"; };
+		E9FA5B721D1B9972004E4A1D /* podcast_cyan.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = podcast_cyan.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,10 +118,12 @@
 		E97372051D1AB4DA00996E12 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E9DEB2B91D1BC73B00A56F9D /* pic_placeholder.png */,
+				E9FA5B721D1B9972004E4A1D /* podcast_cyan.png */,
+				E9DEB2B71D1BC2DE00A56F9D /* status_podcast.png */,
 				E97371FF1D1AA35400996E12 /* play.png */,
 				E97372001D1AA35400996E12 /* paused.png */,
 				E97372011D1AA35400996E12 /* stop.png */,
-				E97371E51D16C53800996E12 /* favicon_color.png */,
 			);
 			name = Resources;
 			path = ..;
@@ -172,6 +181,8 @@
 				E9B05AB01D159D1300C529E5 /* RssParser.h */,
 				E9B05AB21D159D1300C529E5 /* tinyxml2.h */,
 				E9B05AB11D159D1300C529E5 /* tinyxml2.cpp */,
+				E97372091D1B7A0200996E12 /* NSString+MD5.h */,
+				E973720A1D1B7A0200996E12 /* NSString+MD5.m */,
 			);
 			name = Feeds;
 			sourceTree = "<group>";
@@ -259,9 +270,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E97371E61D16C53800996E12 /* favicon_color.png in Resources */,
+				E9DEB2BA1D1BC73B00A56F9D /* pic_placeholder.png in Resources */,
+				E9DEB2B81D1BC2DE00A56F9D /* status_podcast.png in Resources */,
 				E97372021D1AA35400996E12 /* play.png in Resources */,
 				E9B05AA51D155B5400C529E5 /* LaunchScreen.storyboard in Resources */,
+				E9FA5B731D1B9972004E4A1D /* podcast_cyan.png in Resources */,
 				E97372041D1AA35400996E12 /* stop.png in Resources */,
 				E97372031D1AA35400996E12 /* paused.png in Resources */,
 				E9B05AA21D155B5400C529E5 /* Assets.xcassets in Resources */,
@@ -280,6 +293,7 @@
 				E9B05AB31D159D1300C529E5 /* RssParser.cpp in Sources */,
 				E97371F81D1A902600996E12 /* UIApplication+RemoteControl.m in Sources */,
 				E9B05AAE1D159C6400C529E5 /* FeedsData.mm in Sources */,
+				E973720B1D1B7A0200996E12 /* NSString+MD5.m in Sources */,
 				E9B05A971D155B5400C529E5 /* AppDelegate.m in Sources */,
 				E9B05A9A1D155B5400C529E5 /* FirstViewController.m in Sources */,
 				E973718F1D160DB300996E12 /* AFSecurityPolicy.m in Sources */,

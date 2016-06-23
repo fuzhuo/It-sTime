@@ -78,9 +78,11 @@ void RssParser::parse()
     {
         RssItem item;
         const char *item_title=item0->FirstChildElement("title")->GetText();
+        const char *item_link=item0->FirstChildElement("link")->GetText();
         const char *item_description=item0->FirstChildElement("description")->GetText();
         const char *pubDate = item0->FirstChildElement("pubDate")->GetText();
         item.title = item_title;
+        item.link = item_link;
         item.description = item_description;
         XMLElement *contentEle = item0->FirstChildElement("content:encoded");
         if (contentEle) {

@@ -22,6 +22,8 @@
     NSString *description;
     NSString *content;
     NSString *musicURL;
+    NSString *md5;
+    BOOL unread;
 }
 @property (nonatomic, retain) NSString *title;
 @property (nonatomic, retain) NSString *link;
@@ -29,6 +31,8 @@
 @property (nonatomic, retain) NSString *description;
 @property (nonatomic, retain) NSString *content;
 @property (nonatomic, retain) NSString *musicURL;
+@property (nonatomic, retain) NSString *md5;
+@property (nonatomic, assign) BOOL unread;
 @end
 
 @interface RssData_ : NSObject {
@@ -52,6 +56,7 @@
 @end
 
 @interface FeedsData : NSObject {
+    NSMutableDictionary *cookie;
 }
 - (void)fetchFeedsFromURL:(NSString*)feed_url toIndex:(NSInteger) index;
 - (void)fetchImageFromURL:(NSString*)feed_url section:(NSInteger) section row:(NSInteger) row;
@@ -62,8 +67,15 @@
 - (void)changeSettings;
 - (void)loadSettings;
 - (void)saveSettings;
+//cookies is for mark unread/read
+- (void)loadCookie;
+- (void)saveCookie;
+- (void)addCookieForItemAtSection:(NSInteger)section row: (NSInteger) row;
+- (void)addCookie:(NSString*)md5;
+- (void)delCookie:(NSString*)md5;
 @property (nonatomic, retain) id<FeedsUpdate> delegate;
 @property (nonatomic, retain) NSMutableArray<RssData_*> *rssDatas;
+@property (nonatomic, retain) NSMutableDictionary *cookie;
 @property (nonatomic, assign) BOOL showDefault;
 @property (nonatomic, assign) BOOL showHindi;
 @property (nonatomic, assign) BOOL showChinese;

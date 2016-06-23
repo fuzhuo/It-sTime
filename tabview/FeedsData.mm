@@ -7,6 +7,7 @@
 //
 
 #import "FeedsData.h"
+#import "NSString+MD5.h"
 #include "RssParser.h"
 #include "AFNetworking.h"
 
@@ -22,6 +23,8 @@
 @synthesize description;
 @synthesize content;
 @synthesize musicURL;
+@synthesize md5;
+@synthesize unread;
 
 @end
 
@@ -45,6 +48,7 @@
 @synthesize autoPlayAudio;
 @synthesize darkMode;
 @synthesize fontSize;
+@synthesize cookie;
 
 static FeedsData *_sharedFeedsData;
 + (FeedsData*)getInstance {
@@ -66,6 +70,7 @@ static FeedsData *_sharedFeedsData;
     
     //configurations
     [self loadSettings];
+    [self loadCookie];
     return self;
 }
 
@@ -113,6 +118,7 @@ static FeedsData *_sharedFeedsData;
         mRssData.lastBuildDate = [NSString stringWithUTF8String: rssData.lastBuildDate.c_str()];
         mRssData.description = [NSString stringWithUTF8String: rssData.description.c_str()];
         mRssData.language = [NSString stringWithUTF8String: rssData.language.c_str()];
+        
         for (int i=0; i<rssData.items.size(); i++) {
             //NSLog(@"Title %@", [NSString stringWithUTF8String: rssData.items[i].title.c_str()]);
             RssItem_ *item_ = [[RssItem_ alloc] init];
@@ -122,8 +128,15 @@ static FeedsData *_sharedFeedsData;
             item_.pubDate = [NSString stringWithUTF8String:item.pubDate.c_str()];
             item_.description = [NSString stringWithUTF8String:item.description.c_str()];
             item_.content = [NSString stringWithUTF8String:item.content.c_str()];
-            [mRssData.images addObject:[UIImage imageNamed:@"favicon_color.png" ]];
-            
+            item_.md5 = [item_.link stringToMD5:item_.link];
+            id c = [cookie objectForKey:item_.md5];
+            if (c!=nil && [c boolValue]) {
+                item_.unread = NO;
+            } else {
+                item_.unread = YES;
+            }
+            //NSLog(@"[%lu,%d], unread[%d], md5[%@], link[%@]", index, i, item_.unread, item_.md5, item_.link);
+            [mRssData.images addObject:[UIImage imageNamed:@"pic_placeholder.png" ]];
             //for img
             NSRegularExpression *regex = [NSRegularExpression regularExpressionWithPattern:@"<img class=.*src=\"(.*)\" alt=.*/>" options:NSRegularExpressionCaseInsensitive error:nil];
             NSArray *matches = [regex matchesInString:item_.content options:0 range:NSMakeRange(0, item_.content.length)];
@@ -143,6 +156,13 @@ static FeedsData *_sharedFeedsData;
                 //NSLog(@"music_url %@", music_url);
             }
             item_.musicURL = music_url;
+            //remove <audio> .. </audio> from contents
+            /*
+            NSRegularExpression *regex_remove_audio = [NSRegularExpression regularExpressionWithPattern:@"<audio.*</audio>" options:NSRegularExpressionCaseInsensitive error:nil];
+            NSMutableString *str = [NSMutableString stringWithString:item_.content];
+            [regex_remove_audio replaceMatchesInString:str options:0 range:NSMakeRange(0, item_.content.length) withTemplate:@""];
+            item_.content = [NSString stringWithFormat:@"%@", str];
+             */
             [mRssData.items addObject:item_];
         }
         delete parser;
@@ -210,5 +230,34 @@ static FeedsData *_sharedFeedsData;
     [dict setObject:[NSString stringWithFormat:@"%f", self.fontSize] forKey:@"fontSize"];
     [dict writeToFile:filePath atomically:YES];
     //NSLog(@"save settings %@", dict);
+}
+- (void)loadCookie {
+    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *filePath = [docPath stringByAppendingPathComponent:@"cookie.plst"];
+    cookie = [NSMutableDictionary dictionaryWithContentsOfFile:filePath];
+    NSLog(@"load cookie!!");
+    if (cookie == nil) {
+        cookie = [[NSMutableDictionary alloc] init];
+    }
+}
+
+- (void)saveCookie {
+    NSString *docPath = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+    NSString *filePath = [docPath stringByAppendingPathComponent:@"cookie.plst"];
+    [cookie writeToFile:filePath atomically:YES];
+}
+
+- (void)addCookieForItemAtSection:(NSInteger)section row: (NSInteger) row {
+    [[rssDatas objectAtIndex:section].items objectAtIndex:row].unread = NO;
+    NSString *md5 = [[rssDatas objectAtIndex:section].items objectAtIndex:row].md5;
+    [self addCookie:md5];
+}
+- (void)addCookie:(NSString*)md5 {
+    [cookie setObject:@(YES) forKey:md5];
+    [self saveCookie];
+}
+- (void)delCookie:(NSString*)md5 {
+    [cookie removeObjectForKey:md5];
+    [self saveCookie];
 }
 @end
