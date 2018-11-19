@@ -44,14 +44,14 @@
     NSString *description;
     NSString *language;
 }
-@property (nonatomic, retain) NSString *version;
-@property (nonatomic, retain) NSString *title;
-@property (nonatomic, retain) NSString *link;
-@property (nonatomic, retain) NSString *lastBuildDate;
-@property (nonatomic, retain) NSString *description;
-@property (nonatomic, retain) NSString *language;
-@property (nonatomic, retain) NSMutableArray<RssItem_ *> *items;
-@property (nonatomic, retain) NSMutableArray<UIImage*> *images;
+@property (nonatomic, readwrite, copy) NSString *version;
+@property (nonatomic, readwrite, copy) NSString *title;
+@property (nonatomic, readwrite, copy) NSString *link;
+@property (nonatomic, readwrite, copy) NSString *lastBuildDate;
+@property (nonatomic, readwrite, copy) NSString *description;
+@property (nonatomic, readwrite, copy) NSString *language;
+@property (nonatomic, readwrite, strong) NSMutableArray<RssItem_ *> *items;
+@property (nonatomic, readwrite, strong) NSMutableArray<UIImage*> *images;
 
 @end
 
@@ -73,13 +73,13 @@
 - (void)addCookieForItemAtSection:(NSInteger)section row: (NSInteger) row;
 - (void)addCookie:(NSString*)md5;
 - (void)delCookie:(NSString*)md5;
-@property (nonatomic, retain) id<FeedsUpdate> delegate;
-@property (nonatomic, retain) NSMutableArray<RssData_*> *rssDatas;
-@property (nonatomic, retain) NSMutableDictionary *cookie;
-@property (nonatomic, assign) BOOL showDefault;
-@property (nonatomic, assign) BOOL showHindi;
-@property (nonatomic, assign) BOOL showChinese;
-@property (nonatomic, assign) BOOL darkMode;
-@property (nonatomic, assign) BOOL autoPlayAudio;
-@property (nonatomic, assign) CGFloat fontSize;
+@property (nonatomic, readwrite, weak) id<FeedsUpdate> delegate;
+@property (nonatomic, readwrite, strong) NSMutableArray<RssData_*> *rssDatas;
+@property (nonatomic, readwrite, strong) NSMutableDictionary *cookie;
+@property (nonatomic, readwrite, assign) BOOL showDefault;
+@property (nonatomic, readwrite, assign) BOOL showHindi;
+@property (nonatomic, readwrite, assign) BOOL showChinese;
+@property (nonatomic, readwrite, assign) BOOL darkMode;
+@property (nonatomic, readwrite, assign) BOOL autoPlayAudio;
+@property (nonatomic, readwrite, assign) CGFloat fontSize;
 @end

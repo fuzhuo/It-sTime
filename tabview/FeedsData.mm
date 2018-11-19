@@ -179,6 +179,8 @@ static FeedsData *_sharedFeedsData;
 }
 
 - (void)fetchImageFromURL:(NSString*)feed_url section:(NSInteger) section row:(NSInteger) row {
+    if (!feed_url) return;
+    NSLog(@"fetchImageFromURL %@", feed_url);
     NSURLSessionConfiguration *config = [NSURLSessionConfiguration defaultSessionConfiguration];
     [config setAllowsCellularAccess:YES];
     AFHTTPSessionManager *manager = [[AFHTTPSessionManager alloc] initWithSessionConfiguration:config];

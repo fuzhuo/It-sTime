@@ -148,8 +148,8 @@
 		E9B05A911D155B5400C529E5 /* tabview */ = {
 			isa = PBXGroup;
 			children = (
-				E97372051D1AB4DA00996E12 /* Resources */,
 				E97371F31D1A8A5D00996E12 /* tabview.entitlements */,
+				E97372051D1AB4DA00996E12 /* Resources */,
 				E973717F1D160D7C00996E12 /* AFNetwork */,
 				E9B05AB61D159D7B00C529E5 /* UI */,
 				E9B05AB51D159D6B00C529E5 /* Feeds */,
